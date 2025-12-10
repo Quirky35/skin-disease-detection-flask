@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Result</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        :root {
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --primary: #2563eb;
+            --primary-light: #3b82f6;
+            --primary-dark: #1d4ed8;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border-light: #e2e8f0;
+            --border-medium: #cbd5e1;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --radius: 12px;
+            --radius-lg: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        .page-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.025em;
+        }
+
+        .page-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.2s ease;
+        }
+
+        .card:hover {
+            border-color: var(--border-medium);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            gap: 1rem;
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .uploaded-img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-light);
+            transition: transform 0.2s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .uploaded-img:hover {
+            transform: scale(1.02);
+        }
+
+        .prediction-section {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border: 1px solid #7dd3fc;
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .prediction-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .prediction-confidence {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .info-grid {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .info-section {
+            background: #f8fafc;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            transition: background-color 0.2s ease;
+        }
+
+        .info-section:hover {
+            background: #f1f5f9;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-content {
+            color: var(--text-primary);
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .medicines-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .medicine-item {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius);
+            padding: 1rem 1.25rem;
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 500;
+        }
+
+        .medicine-item:hover {
+            background: #f8fafc;
+            border-color: var(--primary-light);
+            transform: translateX(4px);
+        }
+
+        .medicine-item::before {
+            content: '💊';
+            font-size: 1.125rem;
+            flex-shrink: 0;
+        }
+
+        .download-section {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+        }
+
+        .download-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.875rem 2rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow-sm);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .download-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .download-btn:active {
+            transform: translateY(0);
+        }
+
+        .map-section {
+            margin-top: 1rem;
+        }
+
+        .map-container {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-light);
+            background: white;
+        }
+
+        iframe {
+            border: none;
+            width: 100%;
+            height: 450px;
+            display: block;
+        }
+
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-top: 1rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem 1rem;
+            }
+
+            .page-title {
+                font-size: 1.875rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .card-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.75rem;
+            }
+
+            .card-title {
+                font-size: 1.25rem;
+            }
+
+            .uploaded-img {
+                max-width: 100%;
+            }
+
+            iframe {
+                height: 350px;
+            }
+
+            .info-grid {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 1rem 0.75rem;
+            }
+
+            .page-title {
+                font-size: 1.5rem;
+            }
+
+            .card {
+                padding: 1.25rem;
+            }
+
+            .prediction-badge {
+                padding: 0.625rem 1.25rem;
+                font-size: 1rem;
+            }
+
+            .download-btn {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.875rem;
+            }
+
+            iframe {
+                height: 300px;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+
+            .download-section,
+            .map-section {
+                display: none;
+            }
+
+            .card {
+                box-shadow: none;
+                border: 1px solid #000;
+                margin-bottom: 1rem;
+                break-inside: avoid;
+            }
+        }
+
+        /* Focus styles for accessibility */
+        .download-btn:focus,
+        .card:focus-within {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                transition: none !important;
+                animation: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">Skin Disease Prediction Results</h1>
+            <p class="page-subtitle">AI-powered health assessment and recommendations</p>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">🖼️</div>
+                <h2 class="card-title">Uploaded Image</h2>
+            </div>
+            <img src="{{ url_for('uploaded_file', filename=filename) }}" alt="Uploaded medical image"
+                class="uploaded-img">
+            <div class="status-indicator">
+                <div class="status-dot"></div>
+                Image processed successfully
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">🔬</div>
+                <h2 class="card-title">Diagnosis & Recommendations</h2>
+            </div>
+
+            <div class="prediction-section">
+                <div class="prediction-badge">{{ prediction }}</div>
+                <div class="prediction-confidence">AI Analysis Complete</div>
+            </div>
+            <!-- Disease Description Section -->
+            <div class="info-section" style="background: #f0f9ff; border: 1px solid #bae6fd;">
+                <div class="info-label">
+                    🩺 Disease Description
+                </div>
+                <div class="info-content">
+                    {{ description }}
+                </div>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-section">
+                    <div class="info-label">
+                        👨‍⚕️ Recommended Specialist
+                    </div>
+                    <div class="info-content">{{ doctor | safe }}</div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-label">
+                        💊 Suggested Medications
+                    </div>
+                    <ul class="medicines-list">
+                        {% for med in medicines %}
+                        <li class="medicine-item">{{ med }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="download-section">
+                <a href="{{ url_for('download_file', filename=filename + '_report.txt') }}" download
+                    class="download-btn">
+                    📄 Download Full Report
+                </a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">🏥</div>
+                <h2 class="card-title">Nearby Medical Facilities</h2>
+            </div>
+            <div class="map-section">
+                <div class="map-container">
+                    <iframe src="{{ url_for('static', filename=map_file) }}"
+                        title="Interactive map showing nearby clinics and hospitals"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

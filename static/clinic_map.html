@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_c23eb070c57ee0b18a95206880f8b35b {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_c23eb070c57ee0b18a95206880f8b35b" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_c23eb070c57ee0b18a95206880f8b35b = L.map(
+                "map_c23eb070c57ee0b18a95206880f8b35b",
+                {
+                    center: [12.872858348203009, 77.5758321938258],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 13,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_3be3b473230eea0463142aeff26ccb2b = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_3be3b473230eea0463142aeff26ccb2b.addTo(map_c23eb070c57ee0b18a95206880f8b35b);
+        
+    
+            var marker_eba8250b4b19a00b5973622b0753d4ea = L.marker(
+                [12.872858348203009, 77.5758321938258],
+                {
+}
+            ).addTo(map_c23eb070c57ee0b18a95206880f8b35b);
+        
+    
+            var icon_25f8ba797001e07da5ef67a76d69bbe7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+            marker_eba8250b4b19a00b5973622b0753d4ea.bindTooltip(
+                `<div>
+                     Your Location
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_eba8250b4b19a00b5973622b0753d4ea.setIcon(icon_25f8ba797001e07da5ef67a76d69bbe7);
+            
+    
+            var marker_b051548ec669aa04c484e5421f21d4d1 = L.marker(
+                [12.8915893, 77.560715],
+                {
+}
+            ).addTo(map_c23eb070c57ee0b18a95206880f8b35b);
+        
+    
+            var icon_45c204afc24b1ae2bc35d1584f210da7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "plus-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_32c61469081126d7d836a2451649cd28 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ca284d07322897500c17b10dcf33a7d3 = $(`<div id="html_ca284d07322897500c17b10dcf33a7d3" style="width: 100.0%; height: 100.0%;">         <b>Metro Hospital</b><br>         📍 , <br>         📞 N/A<br>         🕒 N/A<br>         <a href="https://www.google.com/maps/search/?api=1&query=12.8915893,77.560715" target="_blank">🗺️ Open in Google Maps</a>         </div>`)[0];
+                popup_32c61469081126d7d836a2451649cd28.setContent(html_ca284d07322897500c17b10dcf33a7d3);
+            
+        
+
+        marker_b051548ec669aa04c484e5421f21d4d1.bindPopup(popup_32c61469081126d7d836a2451649cd28)
+        ;
+
+        
+    
+    
+                marker_b051548ec669aa04c484e5421f21d4d1.setIcon(icon_45c204afc24b1ae2bc35d1584f210da7);
+            
+    
+            var marker_e06c1f03e3107d4ed9df3e84502a40d3 = L.marker(
+                [12.8807554, 77.5841671],
+                {
+}
+            ).addTo(map_c23eb070c57ee0b18a95206880f8b35b);
+        
+    
+            var icon_4beac3fa06a63315118dc6a908e1164a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "plus-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bf0925cc833ab1150be2ddaef3ab94b6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_08179931ab5de07cc9ac329aeaa9c70e = $(`<div id="html_08179931ab5de07cc9ac329aeaa9c70e" style="width: 100.0%; height: 100.0%;">         <b>T.R.Hospital</b><br>         📍 Kothanur Dinne Main Road,Sapthagiri Layout,OppositeFabricana Factory,J.P.Ngar,8Th Phase<br>         📞 N/A<br>         🕒 N/A<br>         <a href="https://www.google.com/maps/search/?api=1&query=12.8807554,77.5841671" target="_blank">🗺️ Open in Google Maps</a>         </div>`)[0];
+                popup_bf0925cc833ab1150be2ddaef3ab94b6.setContent(html_08179931ab5de07cc9ac329aeaa9c70e);
+            
+        
+
+        marker_e06c1f03e3107d4ed9df3e84502a40d3.bindPopup(popup_bf0925cc833ab1150be2ddaef3ab94b6)
+        ;
+
+        
+    
+    
+                marker_e06c1f03e3107d4ed9df3e84502a40d3.setIcon(icon_4beac3fa06a63315118dc6a908e1164a);
+            
+    
+            var marker_c9178c0e4a0fe75a38d273e6c4f807c9 = L.marker(
+                [12.891484, 77.5816961],
+                {
+}
+            ).addTo(map_c23eb070c57ee0b18a95206880f8b35b);
+        
+    
+            var icon_ac8e3bea05340a4a901bc81991520b6d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "plus-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_534b253116fc93e17cdefdb42ebf7b17 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f6abd3e587c138c3526e7f9c3448f46b = $(`<div id="html_f6abd3e587c138c3526e7f9c3448f46b" style="width: 100.0%; height: 100.0%;">         <b>Rainbow Clinic and Diagnostic Laboratory</b><br>         📍 , <br>         📞 N/A<br>         🕒 N/A<br>         <a href="https://www.google.com/maps/search/?api=1&query=12.891484,77.5816961" target="_blank">🗺️ Open in Google Maps</a>         </div>`)[0];
+                popup_534b253116fc93e17cdefdb42ebf7b17.setContent(html_f6abd3e587c138c3526e7f9c3448f46b);
+            
+        
+
+        marker_c9178c0e4a0fe75a38d273e6c4f807c9.bindPopup(popup_534b253116fc93e17cdefdb42ebf7b17)
+        ;
+
+        
+    
+    
+                marker_c9178c0e4a0fe75a38d273e6c4f807c9.setIcon(icon_ac8e3bea05340a4a901bc81991520b6d);
+            
+    
+            var marker_b645d62d2b25e10caf0a3f5995d5d374 = L.marker(
+                [12.8845448, 77.5701276],
+                {
+}
+            ).addTo(map_c23eb070c57ee0b18a95206880f8b35b);
+        
+    
+            var icon_04c4b990abb5e8da9126a9705cbc1b34 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "plus-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_55dec99d32f9970328f776c2b614dd5c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3870eb40fb6c3eb82c842efb51b29952 = $(`<div id="html_3870eb40fb6c3eb82c842efb51b29952" style="width: 100.0%; height: 100.0%;">         <b>Rajnandani Hospital, Bangalore</b><br>         📍 #3, 6 th Cross, Old Bank Colony, Konanakunte<br>         📞 N/A<br>         🕒 N/A<br>         <a href="https://www.google.com/maps/search/?api=1&query=12.8845448,77.5701276" target="_blank">🗺️ Open in Google Maps</a>         </div>`)[0];
+                popup_55dec99d32f9970328f776c2b614dd5c.setContent(html_3870eb40fb6c3eb82c842efb51b29952);
+            
+        
+
+        marker_b645d62d2b25e10caf0a3f5995d5d374.bindPopup(popup_55dec99d32f9970328f776c2b614dd5c)
+        ;
+
+        
+    
+    
+                marker_b645d62d2b25e10caf0a3f5995d5d374.setIcon(icon_04c4b990abb5e8da9126a9705cbc1b34);
+            
+    
+            var marker_06beaad666752b62e1057d19879cc9a1 = L.marker(
+                [12.8907463, 77.5965269],
+                {
+}
+            ).addTo(map_c23eb070c57ee0b18a95206880f8b35b);
+        
+    
+            var icon_0a3a40c41ecf90e312b819991def2a26 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "plus-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3120b29fd612793948b12e0ab49bee88 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_494e5ffc8b0034aa2577e3365714cbc7 = $(`<div id="html_494e5ffc8b0034aa2577e3365714cbc7" style="width: 100.0%; height: 100.0%;">         <b>Aditi Maternity and Genral Nursing Home</b><br>         📍 No 78,Arekere Mico Layout,Bannerghatta Road Bangaloe<br>         📞 N/A<br>         🕒 N/A<br>         <a href="https://www.google.com/maps/search/?api=1&query=12.8907463,77.5965269" target="_blank">🗺️ Open in Google Maps</a>         </div>`)[0];
+                popup_3120b29fd612793948b12e0ab49bee88.setContent(html_494e5ffc8b0034aa2577e3365714cbc7);
+            
+        
+
+        marker_06beaad666752b62e1057d19879cc9a1.bindPopup(popup_3120b29fd612793948b12e0ab49bee88)
+        ;
+
+        
+    
+    
+                marker_06beaad666752b62e1057d19879cc9a1.setIcon(icon_0a3a40c41ecf90e312b819991def2a26);
+            
+    
+            var marker_f63274e72f97375084af849367a7d2ec = L.marker(
+                [12.8840897, 77.5664029],
+                {
+}
+            ).addTo(map_c23eb070c57ee0b18a95206880f8b35b);
+        
+    
+            var icon_809e990a40fdd420dde526cd78b8bbd6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "plus-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d1c8d02139c6797f15c0994730cc1b6b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b28a4092186c97f19723e4b45640427f = $(`<div id="html_b28a4092186c97f19723e4b45640427f" style="width: 100.0%; height: 100.0%;">         <b>Konanakunte Government Hospital</b><br>         📍 PARK, NEAR PARK<br>         📞 N/A<br>         🕒 N/A<br>         <a href="https://www.google.com/maps/search/?api=1&query=12.8840897,77.5664029" target="_blank">🗺️ Open in Google Maps</a>         </div>`)[0];
+                popup_d1c8d02139c6797f15c0994730cc1b6b.setContent(html_b28a4092186c97f19723e4b45640427f);
+            
+        
+
+        marker_f63274e72f97375084af849367a7d2ec.bindPopup(popup_d1c8d02139c6797f15c0994730cc1b6b)
+        ;
+
+        
+    
+    
+                marker_f63274e72f97375084af849367a7d2ec.setIcon(icon_809e990a40fdd420dde526cd78b8bbd6);
+            
+    
+            var marker_608db1da649dbd3aa5f47b4e634ca8a2 = L.marker(
+                [12.8903606, 77.582483],
+                {
+}
+            ).addTo(map_c23eb070c57ee0b18a95206880f8b35b);
+        
+    
+            var icon_97e12540836e03beb665e00484225a4c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "plus-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b7ef27814ae59bc1383a7c3eafd32828 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_009cc30027e946c99d7010af1546452e = $(`<div id="html_009cc30027e946c99d7010af1546452e" style="width: 100.0%; height: 100.0%;">         <b>Dr. Mradula's Skin Clinic</b><br>         📍 , <br>         📞 N/A<br>         🕒 N/A<br>         <a href="https://www.google.com/maps/search/?api=1&query=12.8903606,77.582483" target="_blank">🗺️ Open in Google Maps</a>         </div>`)[0];
+                popup_b7ef27814ae59bc1383a7c3eafd32828.setContent(html_009cc30027e946c99d7010af1546452e);
+            
+        
+
+        marker_608db1da649dbd3aa5f47b4e634ca8a2.bindPopup(popup_b7ef27814ae59bc1383a7c3eafd32828)
+        ;
+
+        
+    
+    
+                marker_608db1da649dbd3aa5f47b4e634ca8a2.setIcon(icon_97e12540836e03beb665e00484225a4c);
+            
+    
+            var marker_f0e9e263ea16402d1517d79b2b3d71de = L.marker(
+                [12.8615976, 77.5999324],
+                {
+}
+            ).addTo(map_c23eb070c57ee0b18a95206880f8b35b);
+        
+    
+            var icon_a894008db45b04972574c1837c7b89d3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "plus-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b02416bc9abdc729e2a09b7e78f9a915 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_16cb20e83f9088fc0b6eb90f273e6983 = $(`<div id="html_16cb20e83f9088fc0b6eb90f273e6983" style="width: 100.0%; height: 100.0%;">         <b>Myo Medex - Ace Speciality Clinic</b><br>         📍 , <br>         📞 N/A<br>         🕒 N/A<br>         <a href="https://www.google.com/maps/search/?api=1&query=12.8615976,77.5999324" target="_blank">🗺️ Open in Google Maps</a>         </div>`)[0];
+                popup_b02416bc9abdc729e2a09b7e78f9a915.setContent(html_16cb20e83f9088fc0b6eb90f273e6983);
+            
+        
+
+        marker_f0e9e263ea16402d1517d79b2b3d71de.bindPopup(popup_b02416bc9abdc729e2a09b7e78f9a915)
+        ;
+
+        
+    
+    
+                marker_f0e9e263ea16402d1517d79b2b3d71de.setIcon(icon_a894008db45b04972574c1837c7b89d3);
+            
+    
+            var marker_f7c2c5a7c826c988818b5970cc01256c = L.marker(
+                [12.8750879, 77.5950098],
+                {
+}
+            ).addTo(map_c23eb070c57ee0b18a95206880f8b35b);
+        
+    
+            var icon_f19e0395533c942f546cc95e84a139f6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "plus-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ad1f1be7e3d60532c45a46e379693bd4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6866b27e42f816c0e7ff79d2e1d9ce08 = $(`<div id="html_6866b27e42f816c0e7ff79d2e1d9ce08" style="width: 100.0%; height: 100.0%;">         <b>Narayana Nethralaya</b><br>         📍 , <br>         📞 N/A<br>         🕒 N/A<br>         <a href="https://www.google.com/maps/search/?api=1&query=12.8750879,77.5950098" target="_blank">🗺️ Open in Google Maps</a>         </div>`)[0];
+                popup_ad1f1be7e3d60532c45a46e379693bd4.setContent(html_6866b27e42f816c0e7ff79d2e1d9ce08);
+            
+        
+
+        marker_f7c2c5a7c826c988818b5970cc01256c.bindPopup(popup_ad1f1be7e3d60532c45a46e379693bd4)
+        ;
+
+        
+    
+    
+                marker_f7c2c5a7c826c988818b5970cc01256c.setIcon(icon_f19e0395533c942f546cc95e84a139f6);
+            
+    
+            var marker_cb9c2a90ac64dd5adc49a10d27fe8685 = L.marker(
+                [12.8943049, 77.5682821],
+                {
+}
+            ).addTo(map_c23eb070c57ee0b18a95206880f8b35b);
+        
+    
+            var icon_0ff3cabe74dabb3b40ab72cd7b63d368 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "plus-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_408950c45aac9e38489983f6308b6a2d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0fe37af21f9e1b919a1f9fe79a7be717 = $(`<div id="html_0fe37af21f9e1b919a1f9fe79a7be717" style="width: 100.0%; height: 100.0%;">         <b>Sri Sai Ram Hospital</b><br>         📍 No.6 J.C.Industrial Area, Yelechenahalli<br>         📞 N/A<br>         🕒 N/A<br>         <a href="https://www.google.com/maps/search/?api=1&query=12.8943049,77.5682821" target="_blank">🗺️ Open in Google Maps</a>         </div>`)[0];
+                popup_408950c45aac9e38489983f6308b6a2d.setContent(html_0fe37af21f9e1b919a1f9fe79a7be717);
+            
+        
+
+        marker_cb9c2a90ac64dd5adc49a10d27fe8685.bindPopup(popup_408950c45aac9e38489983f6308b6a2d)
+        ;
+
+        
+    
+    
+                marker_cb9c2a90ac64dd5adc49a10d27fe8685.setIcon(icon_0ff3cabe74dabb3b40ab72cd7b63d368);
+            
+    
+            var marker_4155a1d4be296742078b4d4bf403fcec = L.marker(
+                [12.894686, 77.5685594],
+                {
+}
+            ).addTo(map_c23eb070c57ee0b18a95206880f8b35b);
+        
+    
+            var icon_3589076659d66073689a53684c8b021d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "plus-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b9f5b981d4f0aebc512053cf3ac29381 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e6b5906ceae38f7236a27eb289ce04c7 = $(`<div id="html_e6b5906ceae38f7236a27eb289ce04c7" style="width: 100.0%; height: 100.0%;">         <b>Diabetacare</b><br>         📍 Kanakapura Road, <br>         📞 N/A<br>         🕒 N/A<br>         <a href="https://www.google.com/maps/search/?api=1&query=12.894686,77.5685594" target="_blank">🗺️ Open in Google Maps</a>         </div>`)[0];
+                popup_b9f5b981d4f0aebc512053cf3ac29381.setContent(html_e6b5906ceae38f7236a27eb289ce04c7);
+            
+        
+
+        marker_4155a1d4be296742078b4d4bf403fcec.bindPopup(popup_b9f5b981d4f0aebc512053cf3ac29381)
+        ;
+
+        
+    
+    
+                marker_4155a1d4be296742078b4d4bf403fcec.setIcon(icon_3589076659d66073689a53684c8b021d);
+            
+    
+            var marker_7d9830b5592d5948b9573c52bac0d6e9 = L.marker(
+                [12.8919509, 77.5799654],
+                {
+}
+            ).addTo(map_c23eb070c57ee0b18a95206880f8b35b);
+        
+    
+            var icon_a9b5df727e435e2f7c05d385e0b625b5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "plus-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f0437bd9248ea983df35ecd6092b4fcb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d9a6154b8ded89dc17bb785dc13c0040 = $(`<div id="html_d9a6154b8ded89dc17bb785dc13c0040" style="width: 100.0%; height: 100.0%;">         <b>Supra South City Hospital</b><br>         📍 No.2, Chandra Complex,J.P.Nagar, 7Th Phase,Puttenahalli,OppositeRbi Cly<br>         📞 N/A<br>         🕒 N/A<br>         <a href="https://www.google.com/maps/search/?api=1&query=12.8919509,77.5799654" target="_blank">🗺️ Open in Google Maps</a>         </div>`)[0];
+                popup_f0437bd9248ea983df35ecd6092b4fcb.setContent(html_d9a6154b8ded89dc17bb785dc13c0040);
+            
+        
+
+        marker_7d9830b5592d5948b9573c52bac0d6e9.bindPopup(popup_f0437bd9248ea983df35ecd6092b4fcb)
+        ;
+
+        
+    
+    
+                marker_7d9830b5592d5948b9573c52bac0d6e9.setIcon(icon_a9b5df727e435e2f7c05d385e0b625b5);
+            
+    
+            var marker_a3707f222736a3b96980e005a79752c3 = L.marker(
+                [12.8822813, 77.5957945],
+                {
+}
+            ).addTo(map_c23eb070c57ee0b18a95206880f8b35b);
+        
+    
+            var icon_59c490794da711dc3758026785c4c781 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "plus-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6d043a381474c947ef286481b911031a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_22cbf3fc44627520fcf41acb17f122c0 = $(`<div id="html_22cbf3fc44627520fcf41acb17f122c0" style="width: 100.0%; height: 100.0%;">         <b>Vasan Eye Care Hospital, Bannergatta Road</b><br>         📍 Dsp Tower, No 40, 1st Floor Above Icici Bank Ltd<br>         📞 N/A<br>         🕒 N/A<br>         <a href="https://www.google.com/maps/search/?api=1&query=12.8822813,77.5957945" target="_blank">🗺️ Open in Google Maps</a>         </div>`)[0];
+                popup_6d043a381474c947ef286481b911031a.setContent(html_22cbf3fc44627520fcf41acb17f122c0);
+            
+        
+
+        marker_a3707f222736a3b96980e005a79752c3.bindPopup(popup_6d043a381474c947ef286481b911031a)
+        ;
+
+        
+    
+    
+                marker_a3707f222736a3b96980e005a79752c3.setIcon(icon_59c490794da711dc3758026785c4c781);
+            
+    
+            var marker_ff2fbd4cdcc5ca7939f2c0b9c9ef81d1 = L.marker(
+                [12.8922411, 77.5814514],
+                {
+}
+            ).addTo(map_c23eb070c57ee0b18a95206880f8b35b);
+        
+    
+            var icon_9f1a4c91d10baa431904b6918792a63a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "plus-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1d47167a7c5a6a6e3ffe6f8db09a7390 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f40b9c14e0a2c472b2a3e3ac6ea66cc7 = $(`<div id="html_f40b9c14e0a2c472b2a3e3ac6ea66cc7" style="width: 100.0%; height: 100.0%;">         <b>The Apollo Clinic For Health Check Up</b><br>         📍 No. 33, Om Tower, Kothnur Main Road, Gaurav Nagar, Jp Nagar, 7Th Phase<br>         📞 N/A<br>         🕒 N/A<br>         <a href="https://www.google.com/maps/search/?api=1&query=12.8922411,77.5814514" target="_blank">🗺️ Open in Google Maps</a>         </div>`)[0];
+                popup_1d47167a7c5a6a6e3ffe6f8db09a7390.setContent(html_f40b9c14e0a2c472b2a3e3ac6ea66cc7);
+            
+        
+
+        marker_ff2fbd4cdcc5ca7939f2c0b9c9ef81d1.bindPopup(popup_1d47167a7c5a6a6e3ffe6f8db09a7390)
+        ;
+
+        
+    
+    
+                marker_ff2fbd4cdcc5ca7939f2c0b9c9ef81d1.setIcon(icon_9f1a4c91d10baa431904b6918792a63a);
+            
+    
+            var marker_e8668854019a2a8f4d25f9791d26db99 = L.marker(
+                [12.8579673, 77.5892687],
+                {
+}
+            ).addTo(map_c23eb070c57ee0b18a95206880f8b35b);
+        
+    
+            var icon_b2ed0acf827a34c69b390a692def78f1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "plus-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3ecd9b4690542a7401fb13a5d63699e0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_164371b8656b536fa1537dc94ec6fa9a = $(`<div id="html_164371b8656b536fa1537dc94ec6fa9a" style="width: 100.0%; height: 100.0%;">         <b>Vijayashree Hospitals</b><br>         📍 #3, Gottigere, Bannerghatta Main Road,Near Gottigere Bus Stand<br>         📞 N/A<br>         🕒 N/A<br>         <a href="https://www.google.com/maps/search/?api=1&query=12.8579673,77.5892687" target="_blank">🗺️ Open in Google Maps</a>         </div>`)[0];
+                popup_3ecd9b4690542a7401fb13a5d63699e0.setContent(html_164371b8656b536fa1537dc94ec6fa9a);
+            
+        
+
+        marker_e8668854019a2a8f4d25f9791d26db99.bindPopup(popup_3ecd9b4690542a7401fb13a5d63699e0)
+        ;
+
+        
+    
+    
+                marker_e8668854019a2a8f4d25f9791d26db99.setIcon(icon_b2ed0acf827a34c69b390a692def78f1);
+            
+    
+            var marker_66202e60d86dbdfd9980ba506af41da5 = L.marker(
+                [12.8914666, 77.5612113],
+                {
+}
+            ).addTo(map_c23eb070c57ee0b18a95206880f8b35b);
+        
+    
+            var icon_d2d953163481cda11c4db53034d1444c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "plus-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f68fb5396f2ec1fb9653ed44e703e49e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ae40791027ae35d363c361f65598185d = $(`<div id="html_ae40791027ae35d363c361f65598185d" style="width: 100.0%; height: 100.0%;">         <b>Metro Hospital, Bengaluru Rural</b><br>         📍 No. 21/3 Vasanthpur Main Road Konanakunte Cross<br>         📞 N/A<br>         🕒 N/A<br>         <a href="https://www.google.com/maps/search/?api=1&query=12.8914666,77.5612113" target="_blank">🗺️ Open in Google Maps</a>         </div>`)[0];
+                popup_f68fb5396f2ec1fb9653ed44e703e49e.setContent(html_ae40791027ae35d363c361f65598185d);
+            
+        
+
+        marker_66202e60d86dbdfd9980ba506af41da5.bindPopup(popup_f68fb5396f2ec1fb9653ed44e703e49e)
+        ;
+
+        
+    
+    
+                marker_66202e60d86dbdfd9980ba506af41da5.setIcon(icon_d2d953163481cda11c4db53034d1444c);
+            
+</script>
+</html>

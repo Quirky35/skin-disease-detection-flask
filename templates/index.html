@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Skin Disease Detector</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        :root {
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --primary: #2563eb;
+            --primary-light: #3b82f6;
+            --primary-dark: #1d4ed8;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border-light: #e2e8f0;
+            --border-medium: #cbd5e1;
+            --border-dashed: #d1d5db;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --radius: 12px;
+            --radius-lg: 16px;
+        }
+
+        body.dark-mode {
+            --bg-main: #0f172a;
+            --bg-card: #1e293b;
+            --primary: #3b82f6;
+            --primary-light: #60a5fa;
+            --primary-dark: #2563eb;
+            --success: #22c55e;
+            --warning: #eab308;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border-light: #334155;
+            --border-medium: #475569;
+            --border-dashed: #475569;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.025em;
+        }
+
+        .subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .main-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.2s ease;
+        }
+
+        .main-card:hover {
+            box-shadow: var(--shadow-lg);
+            border-color: var(--border-medium);
+        }
+
+        .upload-section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .file-input-container {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .file-input-label {
+            display: block;
+            padding: 2.5rem 2rem;
+            border: 2px dashed var(--border-dashed);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: var(--bg-main);
+            text-align: center;
+            position: relative;
+        }
+
+        .file-input-label:hover {
+            border-color: var(--primary);
+            background: rgba(37, 99, 235, 0.02);
+        }
+
+        .file-input-label.dragover {
+            border-color: var(--success);
+            background: rgba(16, 185, 129, 0.05);
+            border-style: solid;
+        }
+
+        .file-input-label.file-selected {
+            border-color: var(--success);
+            background: rgba(16, 185, 129, 0.02);
+            border-style: solid;
+        }
+
+        input[type="file"] {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+            opacity: 0.7;
+        }
+
+        .upload-text {
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .upload-hint {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .image-preview {
+            display: none;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--bg-main);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius);
+        }
+
+        .image-preview.show {
+            display: block;
+        }
+
+        .preview-label {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .image-container {
+            text-align: center;
+        }
+
+        .image-preview img {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-light);
+            transition: transform 0.2s ease;
+        }
+
+        .image-preview img:hover {
+            transform: scale(1.02);
+        }
+
+        .file-info {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(37, 99, 235, 0.05);
+            border-radius: var(--radius);
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .action-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .predict-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow-sm);
+            min-width: 200px;
+        }
+
+        .predict-btn:hover:not(:disabled) {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .predict-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--border-light);
+            border-top: 2px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 0.5rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .controls {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .toggle-label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 48px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--border-medium);
+            transition: 0.3s ease;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 2px;
+            bottom: 2px;
+            background: white;
+            transition: 0.3s ease;
+            border-radius: 50%;
+            box-shadow: var(--shadow-sm);
+        }
+
+        input:checked + .slider {
+            background: var(--primary);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+
+        .features {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: var(--bg-main);
+            border-radius: var(--radius);
+            border: 1px solid var(--border-light);
+        }
+
+        .features-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .features-list {
+            list-style: none;
+            display: grid;
+            gap: 0.5rem;
+        }
+
+        .features-list li {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .features-list li::before {
+            content: "✓";
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                max-width: 100%;
+            }
+            
+            .title {
+                font-size: 2rem;
+            }
+            
+            .main-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .file-input-label {
+                padding: 2rem 1rem;
+            }
+            
+            .upload-icon {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 1rem 0.5rem;
+            }
+            
+            .title {
+                font-size: 1.75rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .main-card {
+                padding: 1.5rem 1rem;
+            }
+            
+            .file-input-label {
+                padding: 1.5rem 1rem;
+            }
+            
+            .predict-btn {
+                padding: 0.875rem 1.5rem;
+                font-size: 1rem;
+                min-width: 160px;
+            }
+        }
+
+        /* Focus styles for accessibility */
+        .file-input-label:focus-within,
+        .predict-btn:focus,
+        .toggle-switch input:focus + .slider {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                transition: none !important;
+                animation: none !important;
+            }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            :root {
+                --border-light: #000000;
+                --border-medium: #000000;
+                --border-dashed: #000000;
+            }
+            
+            body.dark-mode {
+                --border-light: #ffffff;
+                --border-medium: #ffffff;
+                --border-dashed: #ffffff;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">🧬 Skin Disease Detection</h1>
+            <p class="subtitle">AI-powered dermatological analysis for medical assessment</p>
+        </div>
+
+        <div class="main-card">
+            <form action="/predict" method="post" enctype="multipart/form-data" id="uploadForm">
+                <div class="upload-section">
+                    <h2 class="section-title">
+                        📸 Upload Medical Image
+                    </h2>
+                    
+                    <div class="file-input-container">
+                        <label for="file" class="file-input-label" id="fileLabel">
+                            <span class="upload-icon" id="uploadIcon">📷</span>
+                            <div class="upload-text" id="uploadText">Choose an image or drag & drop here</div>
+                            <div class="upload-hint">Supports JPG, PNG, GIF up to 10MB</div>
+                            <input type="file" name="file" id="file" accept="image/*" required>
+                        </label>
+                    </div>
+
+                    <div class="image-preview" id="imagePreview">
+                        <div class="preview-label">
+                            📋 Selected Image Preview
+                        </div>
+                        <div class="image-container">
+                            <img id="preview" src="#" alt="Selected image preview">
+                        </div>
+                        <div class="file-info" id="fileInfo"></div>
+                    </div>
+                </div>
+
+                <div class="action-section">
+                    <button type="submit" class="predict-btn" id="predictBtn">
+                        🔍 Analyze Image
+                    </button>
+                    
+                    <div class="loading" id="loading">
+                        <div class="spinner"></div>
+                        <div class="loading-text">Analyzing image, please wait...</div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="features">
+                <h3 class="features-title">Analysis Features</h3>
+                <ul class="features-list">
+                    <li>Advanced AI-powered skin condition detection</li>
+                    <li>Instant analysis with detailed results</li>
+                    <li>Professional medical recommendations</li>
+                    <li>Secure and confidential processing</li>
+                </ul>
+            </div>
+
+            <div class="controls">
+                <label for="darkModeToggle" class="toggle-label">
+                    🌙 Dark Mode
+                </label>
+                <div class="toggle-switch">
+                    <input type="checkbox" id="darkModeToggle">
+                    <span class="slider"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dark mode functionality
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        }
+
+        // Load saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+            darkModeToggle.checked = true;
+        }
+
+        darkModeToggle.addEventListener('change', toggleDarkMode);
+
+        // File handling
+        const fileInput = document.getElementById('file');
+        const fileLabel = document.getElementById('fileLabel');
+        const uploadIcon = document.getElementById('uploadIcon');
+        const uploadText = document.getElementById('uploadText');
+        const imagePreview = document.getElementById('imagePreview');
+        const preview = document.getElementById('preview');
+        const fileInfo = document.getElementById('fileInfo');
+
+        function previewImage(file) {
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    imagePreview.classList.add('show');
+                    
+                    // Update file label
+                    uploadIcon.textContent = '✅';
+                    uploadText.textContent = 'Image selected successfully';
+                    fileLabel.classList.add('file-selected');
+                    
+                    // Show file info
+                    const fileSize = (file.size / 1024 / 1024).toFixed(2);
+                    fileInfo.innerHTML = `
+                        <strong>File:</strong> ${file.name}<br>
+                        <strong>Size:</strong> ${fileSize} MB<br>
+                        <strong>Type:</strong> ${file.type}
+                    `;
+                }
+                reader.readAsDataURL(file);
+            } else {
+                resetFileInput();
+            }
+        }
+
+        function resetFileInput() {
+            imagePreview.classList.remove('show');
+            preview.src = "#";
+            uploadIcon.textContent = '📷';
+            uploadText.textContent = 'Choose an image or drag & drop here';
+            fileLabel.classList.remove('file-selected');
+            fileInfo.innerHTML = '';
+        }
+
+        // File input change handler
+        fileInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            previewImage(file);
+        });
+
+        // Drag and drop functionality
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            fileLabel.addEventListener(eventName, preventDefaults, false);
+            document.body.addEventListener(eventName, preventDefaults, false);
+        });
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            fileLabel.addEventListener(eventName, highlight, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            fileLabel.addEventListener(eventName, unhighlight, false);
+        });
+
+        fileLabel.addEventListener('drop', handleDrop, false);
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        function highlight(e) {
+            fileLabel.classList.add('dragover');
+        }
+
+        function unhighlight(e) {
+            fileLabel.classList.remove('dragover');
+        }
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+
+            if (files.length > 0) {
+                fileInput.files = files;
+                previewImage(files[0]);
+            }
+        }
+
+        // Form submission handling
+        const uploadForm = document.getElementById('uploadForm');
+        const predictBtn = document.getElementById('predictBtn');
+        const loading = document.getElementById('loading');
+
+        uploadForm.addEventListener('submit', function(e) {
+            // Show loading state
+            loading.classList.add('show');
+            predictBtn.disabled = true;
+            predictBtn.textContent = 'Analyzing...';
+        });
+
+        // File input validation
+        fileInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                // Check file size (10MB limit)
+                if (file.size > 10 * 1024 * 1024) {
+                    alert('File size must be less than 10MB');
+                    this.value = '';
+                    resetFileInput();
+                    return;
+                }
+                
+                // Check file type
+                if (!file.type.startsWith('image/')) {
+                    alert('Please select a valid image file');
+                    this.value = '';
+                    resetFileInput();
+                    return;
+                }
+            }
+        });
+
+        // Keyboard accessibility
+        fileInput.addEventListener('focus', function() {
+            fileLabel.style.outline = '2px solid var(--primary)';
+            fileLabel.style.outlineOffset = '2px';
+        });
+
+        fileInput.addEventListener('blur', function() {
+            fileLabel.style.outline = 'none';
+        });
+
+        // Enhanced error handling
+        window.addEventListener('error', function(e) {
+            console.error('An error occurred:', e.error);
+            loading.classList.remove('show');
+            predictBtn.disabled = false;
+            predictBtn.textContent = '🔍 Analyze Image';
+        });
+    </script>
+</body>
+</html>
